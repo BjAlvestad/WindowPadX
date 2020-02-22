@@ -395,7 +395,7 @@ wp_Restore() {
     WinGet, id, list, , , Program Manager
     Loop, %id%
     {
-        ; Aktionen rückhängig ...
+        ; Aktionen rï¿½ckhï¿½ngig ...
         hwnd := id%A_Index%
         WinGetTitle, WinTitle, ahk_id %hwnd%
         
@@ -1530,5 +1530,60 @@ WM_SHELLHOOKMESSAGE(wParam, lParam, nMsg)
 		wp_WinTraymin(lParam,wParam)
 	Return	0
 }
+
+
+/*
+===============================================================================
+Function:   WPXA_TransparentToggle
+    Make window transparent.
+
+Parameters:
+	WinTitle - Title of the window
+    TransparancyDegree - Transparancy degree from 0 (invisible) to 255 (opaque). Use Off to turn it off
+      
+Author(s):
+    20180919 - BjAlv - alpha (unable to pass argument. Should add debug message)
+    Originally copied from TopToggle
+===============================================================================
+*/
+
+WPXA_TransparentToggle(WinTitle) {
+    
+    Global NotifyOptions, NotifyDuration, Ico_Minus, Ico_Plus
+    
+    if hwnd := wp_WinExist(WinTitle)
+    {
+		WinGet, currentTransparaency, Transparent
+		if (currentTransparaency == 150) {
+			WinSet, Transparent, 255
+			WinSet, Transparent, Off
+		}
+		else {
+			WinSet, Transparent, 150
+		}
+		
+        _DBG_FName := A_ScriptName "-[WPXA_TransparentToggle] - "   ; _DBG_
+        WinGetClass, WinClass, ahk_id %hwnd%    ; _DBG_
+        WinGetTitle, WinTitle, ahk_id %hwnd%    ; _DBG_
+		
+        /* RESTERENDE KODE FRA KOPI AV TopToggle
+        CurrWinTitle := wp_WinGetTitle(WinTitle)
+        if (wp_IsAlwaysOnTop(WinTitle))
+        {
+            OutputDebug % _DBG_FName "Transparent enabled for hwnd: " hwnd " - win_class: " WinClass " - win_title: " WinTitle  ; _DBG_
+            Notify(A_ScriptName,CurrWinTitle "`nTransparent enabled - " hwnd, NotifyDuration, NotifyOptions Ico_Plus)
+            //MsgBox, NotifyOptions 
+            wp_SetProp(hwnd,"wpAlwaysOnTop",1)
+        }
+        else
+        {
+            OutputDebug % _DBG_FName "Transparent disabled for hwnd: " hwnd " - win_class: " WinClass " - win_title: " WinTitle  ; _DBG_
+            Notify(A_ScriptName,CurrWinTitle "`nTransparent disabled - " hwnd, NotifyDuration, NotifyOptions Ico_Minus)
+            wp_RemoveProp(hwnd,"wpAlwaysOnTop")
+        }
+		*/
+    }
+}
+
 
 #include %A_ScriptDir%\_inc\Notify.ahk
