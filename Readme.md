@@ -34,7 +34,7 @@ Windows are placed with letterkeys based on the following logic:
 
 #### Spanning from L/R monitor
 - `CapsLock + q-u, a-j, z-m`:  Places window from monitor edge with widths L30, L50, L70, 100, R70, R50, R30.
-- `CapsLock + i/k`:  Backup alternatives for `v` and `r` (full with top and full with bottom), but with a width of 99 instead of 100 (some windows may have issues moving with width 100 due to windows get made a bit wider due the invisible boarders. Ref. pull request "pacobyte:windows-10-border-fix" in original repo).
+- `CapsLock + i/k`:  Backup alternatives for `v` and `r` (full width top and full width bottom), but with a width of 99 instead of 100 (some windows may have issues moving with width 100 due to windows get made a bit wider due the invisible boarders. Ref. pull request "pacobyte:windows-10-border-fix" in original repo).
  
 #### Spanning from offset (30) from monitor edge
 - `CapsLock + Alt + e,r,t, d,f,g, c,v,b`:  Places window at 30% offset from edge with widths L20, 40, R20.
